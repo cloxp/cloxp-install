@@ -15,7 +15,10 @@ fi
 echo -e "DOWNLOADING PARTSBIN"
 export WORKSPACE_LK=`pwd`
 node -e "require('./bin/helper/download-partsbin.js')()";
-
 popd
+
+cp cloxp/cloxp.html LivelyKernel/
+cp cloxp/localconfig.js LivelyKernel/core/lively/
+cp cloxp/BetterConfig.js LivelyKernel/core/lively/ide/codeeditor/
 
 echo -e "INSTALLED"
