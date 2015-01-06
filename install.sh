@@ -13,6 +13,9 @@ if [[ -z "$forever_installed" ]]; then
 fi
 
 echo -e "DOWNLOADING PARTSBIN"
+export WORKSPACE_LK=`pwd`
 node -e "require('./bin/helper/download-partsbin.js')()";
 
 popd
+
+echo -e "INSTALLED"
