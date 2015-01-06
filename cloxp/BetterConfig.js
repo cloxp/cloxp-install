@@ -1,6 +1,8 @@
 module('lively.ide.codeeditor.BetterConfig').requires('lively.Traits', 'lively.ide.commands.default').toRun(function() {
 
 
+lively.ide.codeeditor.BetterConfig.codeEditorKeysEnabled = true;
+
 function ensureCodeEditorPreferences() {
     // Config.addOption("textDebugging", true,
     //          "used in text impl to enable / disable debugging and warnings",
@@ -21,13 +23,13 @@ function ensureCodeEditorPreferences() {
             setting.set && lively.PropertyPath(setting.set).set(lively.morphic.CodeEditor.prototype, setting.value);
         });
 
-        var setup = lively.Config.lookup("codeEditorUserKeySetup");
-        if (users.robertkrahn.codeEditorKeysEnabled && setup) {
-            lively.whenLoaded(function(world) {
-                var eds = world.withAllSubmorphsSelect(function(ea) { return ea.isCodeEditor; })
-                        .forEach(function(ea) { if (!ea.hasRobertsKeys) setup(ea); });
-            });
-        }
+        // var setup = lively.Config.lookup("codeEditorUserKeySetup");
+        // if (lively.ide.codeeditor.BetterConfig.codeEditorKeysEnabled && setup) {
+        //     lively.whenLoaded(function(world) {
+        //         var eds = world.withAllSubmorphsSelect(function(ea) { return ea.isCodeEditor; })
+        //                 .forEach(function(ea) { if (!ea.hasRobertsKeys) setup(ea); });
+        //     });
+        // }
     });
 }
 
@@ -182,7 +184,7 @@ Global.setupIyGoToChar = function(keyboardHandler) {
 
 Config.addOption("codeEditorUserKeySetup", function(_codeEditor) {
     var e = _codeEditor.aceEditor, kbd = e.getKeyboardHandler();
-    if (!users.robertkrahn.codeEditorKeysEnabled) {
+    if (!lively.ide.codeeditor.BetterConfig.codeEditorKeysEnabled) {
         if (kbd.isEmacs) {
             // we have our own version of exec
             e.keyBinding.setKeyboardHandler(e.commands);
