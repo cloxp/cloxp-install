@@ -26,18 +26,23 @@ pushd Clojure/;
 rm *;
 wget http://lively-web.org/PartsBin/Clojure/ClojureBrowser.{html,json,metainfo};
 wget http://lively-web.org/PartsBin/Clojure/ClojureController.{html,json,metainfo};
-popd
+wget http://lively-web.org/PartsBin/Clojure/ClojarsBrowser.{html,json,metainfo};
+wget http://lively-web.org/PartsBin/Clojure/ProjectController.{html,json,metainfo};
+popd # Clojure
+
 pushd Basic
 rm "SVGPathMorph.*"
 rm "PolygonMaker.*"
 rm "PathMaker.*"
-popd
+popd # Basic
 
 find . -type d -maxdepth 1 \
   | egrep -v "Clojure|Basic|Dialogs|Documentation|DroppableBehaviors|ElProfesor|Fun|Inputs|Tools|Widgets|Wiki" \
   | xargs - rm -rf
 
-popd
+popd # PartsBin
+
+popd # LivelyKernel
 
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
