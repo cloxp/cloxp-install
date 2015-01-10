@@ -4,6 +4,8 @@ git submodule update --init --recursive
 
 pushd LivelyKernel
 
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 echo -e "INSTALLING NPM MODULES"
 npm install
 
@@ -12,15 +14,32 @@ if [[ -z "$forever_installed" ]]; then
   npm install forever
 fi
 
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 echo -e "DOWNLOADING PARTSBIN"
 export WORKSPACE_LK=`pwd`
 node -e "require('./bin/helper/download-partsbin.js')()";
-pushd PartsBin/Clojure;
+
+pushd PartsBin/
+
+pushd Clojure/;
 rm *;
 wget http://lively-web.org/PartsBin/Clojure/ClojureBrowser.{html,json,metainfo};
 wget http://lively-web.org/PartsBin/Clojure/ClojureController.{html,json,metainfo};
 popd
+pushd Basic
+rm "SVGPathMorph.*"
+rm "PolygonMaker.*"
+rm "PathMaker.*"
 popd
+
+find . -type d -maxdepth 1 \
+  | egrep -v "Clojure|Basic|Dialogs|Documentation|DroppableBehaviors|ElProfesor|Fun|Inputs|Tools|Widgets|Wiki" \
+  | xargs - rm -rf
+
+popd
+
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 echo -e "MOVING LIVELY CUSTOMIZATIONS IN PLACE"
 
