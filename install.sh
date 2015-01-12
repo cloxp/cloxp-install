@@ -38,7 +38,7 @@ popd # Basic
 
 find . -type d -maxdepth 1 \
   | egrep -v "Clojure|Basic|Dialogs|Documentation|DroppableBehaviors|ElProfesor|Fun|Inputs|Tools|Widgets|Wiki" \
-  | xargs - rm -rf
+  | xargs rm -rf
 
 popd # PartsBin
 
