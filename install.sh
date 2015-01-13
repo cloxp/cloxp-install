@@ -37,7 +37,7 @@ rm "PathMaker.*"
 popd # Basic
 
 find . -type d -maxdepth 1 \
-  | egrep -v "Clojure|Basic|Dialogs|Documentation|DroppableBehaviors|ElProfesor|Fun|Inputs|Tools|Widgets|Wiki" \
+  | egrep -v "Clojure|Basic|Dialogs|Documentation|DroppableBehaviors|ElProfesor|Fun|Inputs|Tools|Widgets|Wiki|Debugging" \
   | xargs rm -rf
 
 popd # PartsBin
