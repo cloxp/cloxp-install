@@ -1,12 +1,13 @@
 #! /bin/bash
 
-git submodule update --init --recursive
+# git submodule update --init --recursive
 
 pushd LivelyKernel
 
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 echo -e "INSTALLING NPM MODULES"
+rm -rf node_modules
 npm install
 
 forever_installed=`npm list | grep "forever@" > /dev/null 2>&1`
