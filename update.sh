@@ -1,6 +1,11 @@
 #! /bin/bash
 
-pushd clj-feather/; git reset --hard HEAD; popd;
- git pull --rebase && git submodule update --init -f
 
-./install.sh
+pushd LivelyKernel/PartsBin/Clojure
+
+echo -e "Updating clojure tools..."
+rm *;
+wget http://lively-web.org/PartsBin/Clojure/ClojureBrowser.{html,json,metainfo};
+wget http://lively-web.org/PartsBin/Clojure/ClojureController.{html,json,metainfo};
+wget http://lively-web.org/PartsBin/Clojure/ClojarsBrowser.{html,json,metainfo};
+wget http://lively-web.org/PartsBin/Clojure/ProjectController.{html,json,metainfo};

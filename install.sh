@@ -1,57 +1,66 @@
 #! /bin/bash
 
-# git submodule update --init --recursive
+cloxp_dir=`pwd`
+# -=-=-=-=-=-=-=-=-=-=-=-
+# 1. Check dependencies
+# -=-=-=-=-=-=-=-=-=-=-=-
+
+echo -e "Checking dependencies..."
+
+function install_error {
+  echo -e "Error installing cloxp:"
+  echo -e "  $1"
+  exit 1
+}
+
+res=$(java -version 2>&1 $> /dev/null)
+[[ $? -ne 0 ]] && install_error "Java does not seem to be installed."
+
+res=$(lein --version)
+[[ $? -ne 0 ]] && install_error "Leiningen does not seem to be installed."
+
+res=$(node --version)
+[[ $? -ne 0 ]] && install_error "node.js does not seem to be installed."
+
+res=$(npm --version)
+[[ $? -ne 0 ]] && install_error "npm does not seem to be installed."
+
+
+# -=-=-=-=-=-=-=-=-=-
+# 2. Install Lively
+# -=-=-=-=-=-=-=-=-=-
+
+echo -e "Installing LivelyKernel..."
+
+git clone --branch clojure-support \
+  --single-branch \
+  https://github.com/LivelyKernel/LivelyKernel
 
 pushd LivelyKernel
 
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-echo -e "INSTALLING NPM MODULES"
+echo -e "  Installing npm modules..."
 rm -rf node_modules
 npm install
 
-forever_installed=`npm list | grep "forever@" > /dev/null 2>&1`
-if [[ -z "$forever_installed" ]]; then
-  npm install forever
-fi
+forever_installed=$(npm list | grep "forever@" > /dev/null 2>&1)
+[[ -z "$forever_installed" ]] && npm install forever
 
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-echo -e "DOWNLOADING PARTSBIN"
-export WORKSPACE_LK=`pwd`
-node -e "require('./bin/helper/download-partsbin.js')()";
+echo -e "  installing PartsBin..."
+[[ -d PartsBin ]] && rm -rf PartsBin;
+cp -r "$cloxp_dir/PartsBin" PartsBin;
+
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+echo -e "  installing lively customizations..."
+
+cp $cloxp_dir/lively-customizations/localconfig.js core/lively/
 
 touch core/lively/Base.js # force combined modules to re-generate
 
-pushd PartsBin/
-
-pushd Clojure/;
-rm *;
-wget http://lively-web.org/PartsBin/Clojure/ClojureBrowser.{html,json,metainfo};
-wget http://lively-web.org/PartsBin/Clojure/ClojureController.{html,json,metainfo};
-wget http://lively-web.org/PartsBin/Clojure/ClojarsBrowser.{html,json,metainfo};
-wget http://lively-web.org/PartsBin/Clojure/ProjectController.{html,json,metainfo};
-popd # Clojure
-
-pushd Basic
-rm SVGPathMorph*
-rm PolygonMaker*
-rm PathMaker*
-popd # Basic
-
-find . -type d -maxdepth 1 \
-  | egrep -v "Clojure|Basic|Dialogs|Documentation|DroppableBehaviors|ElProfesor|Fun|Inputs|Tools|Widgets|Wiki|Debugging" \
-  | xargs rm -rf
-
-popd # PartsBin
-
 popd # LivelyKernel
 
-# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-echo -e "MOVING LIVELY CUSTOMIZATIONS IN PLACE"
-
-cp cloxp/localconfig.js LivelyKernel/core/lively/
-cp cloxp/EmacsConfig.js LivelyKernel/core/lively/ide/codeeditor/
-
-echo -e "INSTALLATION DONE"
+echo -e "installation done"
