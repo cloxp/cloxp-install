@@ -21,6 +21,8 @@ echo -e "DOWNLOADING PARTSBIN"
 export WORKSPACE_LK=`pwd`
 node -e "require('./bin/helper/download-partsbin.js')()";
 
+touch core/lively/Base.js # force combined modules to re-generate
+
 pushd PartsBin/
 
 pushd Clojure/;
@@ -32,9 +34,9 @@ wget http://lively-web.org/PartsBin/Clojure/ProjectController.{html,json,metainf
 popd # Clojure
 
 pushd Basic
-rm "SVGPathMorph.*"
-rm "PolygonMaker.*"
-rm "PathMaker.*"
+rm SVGPathMorph*
+rm PolygonMaker*
+rm PathMaker*
 popd # Basic
 
 find . -type d -maxdepth 1 \
@@ -50,6 +52,6 @@ popd # LivelyKernel
 echo -e "MOVING LIVELY CUSTOMIZATIONS IN PLACE"
 
 cp cloxp/localconfig.js LivelyKernel/core/lively/
-cp cloxp/BetterConfig.js LivelyKernel/core/lively/ide/codeeditor/
+cp cloxp/EmacsConfig.js LivelyKernel/core/lively/ide/codeeditor/
 
 echo -e "INSTALLATION DONE"
