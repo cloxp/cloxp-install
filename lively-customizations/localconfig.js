@@ -1,9 +1,17 @@
+lively.Config.set('maxStatusMessages', 10);
 lively.Config.add('modulesOnWorldLoad', "lively.ide.codeeditor.EmacsConfig");
 lively.Config.set('isPublicServer', true);
 
+// -=-=-=-=-=-=-
+// code editor
+// -=-=-=-=-=-=-
+lively.whenLoaded(function() { lively.Config.set('defaultTabSize', 2); });
 if (lively.LocalStorage.get("useEmacsyKeys") === null)
   lively.Config.set("useEmacsyKeys", true);
 
+// -=-=-=-
+// cloxp
+// -=-=-=-
 cloxpConnect();
 
 window.cloxpConnect = lively.cloxpConnect = cloxpConnect;
