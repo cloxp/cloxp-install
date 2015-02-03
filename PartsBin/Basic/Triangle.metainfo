@@ -1,0 +1,1 @@
+{"id":0,"registry":{"0":{"partName":"Triangle","requiredModules":[],"migrationLevel":2,"partsSpaceName":"PartsBin/Basic/","__SourceModuleName__":"Global.lively.PartsBin","comment":"A triangle formed polygon.\nCreate other polygons out of it by dragging the round handles.","__LivelyClassName__":"lively.PartsBin.PartsBinMetaInfo"},"isSimplifiedRegistry":true}}
