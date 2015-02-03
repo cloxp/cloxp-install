@@ -5,9 +5,11 @@ lively.Config.set('isPublicServer', true);
 // -=-=-=-=-=-=-
 // code editor
 // -=-=-=-=-=-=-
-lively.whenLoaded(function() { lively.Config.set('defaultTabSize', 2); });
-if (lively.LocalStorage.get("useEmacsyKeys") === null)
-  lively.Config.set("useEmacsyKeys", true);
+if (typeof process === "undefined") { // FIXME!
+    lively.whenLoaded(function() { lively.Config.set('defaultTabSize', 2); });
+    if (lively.LocalStorage.get("useEmacsyKeys") === null)
+        lively.Config.set("useEmacsyKeys", true);
+}
 
 // -=-=-=-
 // cloxp
@@ -23,7 +25,6 @@ function cloxpConnect(thenDo) {
   lively.Config.set("nodeJSWebSocketURL", 'http://lively-web.org:' + port + '/nodejs');
   if (typeof $world !== "undefined") $world.setCurrentUser("cloxp-user-" + port);
   else lively.Config.set("UserName", "cloxp-user-" + port);
-  
 
   if (!lively.lang.Path("lively.morphic.World.currentWorld").get(window)) {
     lively.require("lively.net.SessionTracker").toRun(function() {
