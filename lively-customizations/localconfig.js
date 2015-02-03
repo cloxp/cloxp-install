@@ -20,7 +20,7 @@ window.cloxpConnect = lively.cloxpConnect = cloxpConnect;
 
 function cloxpConnect(thenDo) {
   var port = lively.Config.cookie && Number(lively.Config.cookie["cloxp-assignment"]);
-  if (!port) return thenDot && henDo();
+  if (!port) return thenDo && thenDo();
 
   lively.Config.set("nodeJSWebSocketURL", 'http://lively-web.org:' + port + '/nodejs');
   if (typeof $world !== "undefined") $world.setCurrentUser("cloxp-user-" + port);
