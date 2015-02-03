@@ -1,6 +1,0 @@
-[submodule "LivelyKernel"]
-	path = LivelyKernel
-	url = https://github.com/LivelyKernel/LivelyKernel
-[submodule "clj-feather"]
-	path = clj-feather
-	url = https://github.com/rksm/clj-feather.git
