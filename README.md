@@ -12,3 +12,9 @@ Prerequisites are: [java](http://www.oracle.com/technetwork/java/javase/download
 4. Start: `$ ./start.sh`
 
 Cloxp should now be running at [http://localhost:9001/cloxp.html](http://localhost:9001/cloxp.html).
+
+To stop the server press `Ctrl-c`.
+
+### Install notes
+
+On Arch Linux you might have to set the python path for installing when your default python isn't of version 2: `$ PYTHON=python2.7 ./install.sh`
