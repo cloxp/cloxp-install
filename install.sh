@@ -53,7 +53,6 @@ fi
 
 forever_installed=$(npm list | grep "forever@" > /dev/null 2>&1)
 if [[ -z "$forever_installed" ]]; then
-    npm install forever
     res=$(npm install forever 2>&1 >npm-install.log)
     if [[ $? -ne 0 ]]; then
         log=`cat npm-install.log`;
