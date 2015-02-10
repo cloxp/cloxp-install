@@ -71,9 +71,9 @@ cp -r "$cloxp_dir/PartsBin" PartsBin;
 
 echo -e "  installing lively customizations..."
 
-cp $cloxp_dir/lively-customizations/localconfig.js core/lively/
+cp "$cloxp_dir/lively-customizations/localconfig.js" core/lively/
 
-cp -r $cloxp_dir/assets ./cloxp
+cp -r "$cloxp_dir/assets" ./cloxp
 
 touch core/lively/Base.js # force combined modules to re-generate
 
