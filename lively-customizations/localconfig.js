@@ -1,6 +1,7 @@
 lively.Config.set('maxStatusMessages', 10);
 lively.Config.add('modulesOnWorldLoad', "lively.ide.codeeditor.EmacsConfig");
 lively.Config.set('isPublicServer', true);
+lively.Config.set('showMenuBar', true);
 
 // -=-=-=-=-=-=-
 // code editor
