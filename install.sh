@@ -42,7 +42,7 @@ pushd LivelyKernel
 
 echo -e "  Installing npm modules..."
 rm -rf node_modules
-res=$(npm install 2>&1 $> npm-install.log)
+res=$(npm install 2>&1 >npm-install.log)
 
 if [[ $? -ne 0 ]]; then
     log=`cat npm-install.log`;
@@ -54,7 +54,7 @@ fi
 forever_installed=$(npm list | grep "forever@" > /dev/null 2>&1)
 if [[ -z "$forever_installed" ]]; then
     npm install forever
-    res=$(npm install forever 2>&1 $> npm-install.log)
+    res=$(npm install forever 2>&1 >npm-install.log)
     if [[ $? -ne 0 ]]; then
         log=`cat npm-install.log`;
         install_error "npm forever install failed! $log"
