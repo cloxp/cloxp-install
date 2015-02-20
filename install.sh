@@ -39,12 +39,10 @@ res=$(git clone --branch clojure-support \
           https://github.com/LivelyKernel/LivelyKernel \
       2>&1 >>"$install_log")
 
-if [[ $? -ne 0 ]]; then
-    log=`cat npm-install.log`;
-    install_error "git cloning LivelyKernel failed! $log"
-
-fi
-
+# if [[ $? -ne 0 ]]; then
+#     log=`cat npm-install.log`;
+#     install_error "git cloning LivelyKernel failed! $log"
+# fi
 
 pushd LivelyKernel
 
@@ -82,6 +80,7 @@ echo -e "  installing lively customizations..."
 cp "$cloxp_dir/lively-customizations/localconfig.js" core/lively/
 
 cp -r "$cloxp_dir/assets" ./cloxp
+cp -r "$cloxp_dir/assets/cloxp-logo.{jpg,png}" ./core/media
 
 touch core/lively/Base.js # force combined modules to re-generate
 
