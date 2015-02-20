@@ -1,7 +1,7 @@
 #! /bin/bash
 
 cloxp_dir=`pwd`
-install_log="$cloxp_dir/install.log"
+install_log="install.log"
 echo -e "cloxp install started `date`" > $install_log
 
 # -=-=-=-=-=-=-=-=-=-=-=-
