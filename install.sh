@@ -1,6 +1,9 @@
 #! /bin/bash
 
 cloxp_dir=`pwd`
+install_log="$cloxp_dir/install.log"
+echo -e "cloxp install started `date`" > $install_log
+
 # -=-=-=-=-=-=-=-=-=-=-=-
 # 1. Check dependencies
 # -=-=-=-=-=-=-=-=-=-=-=-
@@ -13,18 +16,17 @@ function install_error {
   exit 1
 }
 
-res=$(java -version 2>&1 $> /dev/null)
+res=$(java -version 2>&1 >>"$install_log")
 [[ $? -ne 0 ]] && install_error "Java does not seem to be installed."
 
-res=$(lein --version)
+res=$(lein --version 2>&1 >>"$install_log")
 [[ $? -ne 0 ]] && install_error "Leiningen does not seem to be installed."
 
-res=$(node --version)
+res=$(node --version 2>&1 >>"$install_log")
 [[ $? -ne 0 ]] && install_error "node.js does not seem to be installed."
 
-res=$(npm --version)
+res=$(npm --version 2>&1 >>"$install_log")
 [[ $? -ne 0 ]] && install_error "npm does not seem to be installed."
-
 
 # -=-=-=-=-=-=-=-=-=-
 # 2. Install Lively
@@ -32,9 +34,17 @@ res=$(npm --version)
 
 echo -e "Installing LivelyKernel..."
 
-git clone --branch clojure-support \
-  --single-branch \
-  https://github.com/LivelyKernel/LivelyKernel
+res=$(git clone --branch clojure-support \
+          --single-branch \
+          https://github.com/LivelyKernel/LivelyKernel \
+      2>&1 >>"$install_log")
+
+if [[ $? -ne 0 ]]; then
+    log=`cat npm-install.log`;
+    install_error "git cloning LivelyKernel failed! $log"
+
+fi
+
 
 pushd LivelyKernel
 
@@ -42,20 +52,19 @@ pushd LivelyKernel
 
 echo -e "  Installing npm modules..."
 rm -rf node_modules
-res=$(npm install 2>&1 >npm-install.log)
+res=$(npm install 2>&1 >>"$install_log")
 
 if [[ $? -ne 0 ]]; then
-    log=`cat npm-install.log`;
-    install_error "npm install failed! $log"
+    echo -e "npm install had errors! In case cloxp doesn't work please try running install.sh again. If it still doesn't work please open an issue at https://github.com/cloxp/cloxp-install/issues/ with the install log: $install_log. Thanks!"
+    # log=`cat "$install_log"`;
+    # install_error "npm install failed! $log"
 fi
-
-
 
 forever_installed=$(npm list | grep "forever@" > /dev/null 2>&1)
 if [[ -z "$forever_installed" ]]; then
-    res=$(npm install forever 2>&1 >npm-install.log)
+    res=$(npm install forever 2>&1 >>"$install_log")
     if [[ $? -ne 0 ]]; then
-        log=`cat npm-install.log`;
+        log=`cat "$install_log"`;
         install_error "npm forever install failed! $log"
     fi
 fi
