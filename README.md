@@ -18,3 +18,7 @@ To stop the server press `Ctrl-c`.
 ### Install notes
 
 On Arch Linux you might have to set the python path for installing when your default python isn't of version 2: `$ PYTHON=python2.7 ./install.sh`
+
+# LICENSE
+
+All code is published under the [MIT license](https://github.com/cloxp/cloxp-install/blob/master/LICENSE).
