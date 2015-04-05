@@ -36,7 +36,7 @@ echo -e "Installing LivelyKernel..."
 
 res=$(git clone --branch clojure-support \
           --single-branch \
-          https://github.com/LivelyKernel/LivelyKernel \
+          https://github.com/cloxp/LivelyKernel \
       2>&1 >>"$install_log")
 
 # if [[ $? -ne 0 ]]; then
