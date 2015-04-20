@@ -34,7 +34,7 @@ res=$(npm --version 2>&1 >>"$install_log")
 
 echo -e "Installing LivelyKernel..."
 
-res=$(git clone --branch clojure-support \
+res=$(git clone --branch cloxp-0.0.7 \
           --single-branch \
           https://github.com/cloxp/LivelyKernel \
       2>&1 >>"$install_log")
