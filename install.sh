@@ -44,6 +44,12 @@ res=$(git clone --branch cloxp-0.0.7 \
 #     install_error "git cloning LivelyKernel failed! $log"
 # fi
 
+if [[ ! -d LivelyKernel ]]; then
+    log=`cat npm-install.log`;
+    install_error "could not install LivelyKernel into `pwd`! $log"
+fi
+
+
 pushd LivelyKernel
 
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -80,9 +86,11 @@ echo -e "  installing lively customizations..."
 cp "$cloxp_dir/lively-customizations/localconfig.js" core/lively/
 
 cp -r "$cloxp_dir/assets" ./cloxp
-cp -r "$cloxp_dir/assets/cloxp-logo.{jpg,png}" ./core/media
+cp -r "$cloxp_dir/assets/cloxp-logo.jpg" ./core/media
+cp -r "$cloxp_dir/assets/cloxp-logo.png" ./core/media
 
 touch core/lively/Base.js # force combined modules to re-generate
+test -f combined.js && rm combined.js
 
 popd # LivelyKernel
 
