@@ -1,5 +1,5 @@
 # cloxp-install
-Install script for cloxp -- a Clojure IDE for explorative and interactive development.
+Install script for [cloxp -- a Clojure IDE for explorative and interactive development](http://cloxp.github.io/).
 
 ## Installation
 
