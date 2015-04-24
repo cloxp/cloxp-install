@@ -1,6 +1,10 @@
 # cloxp-install
 Install script for [cloxp -- a Clojure IDE for explorative and interactive development](http://cloxp.github.io/).
 
+#### Note for installs made earlier than Apr 24
+
+If you have installed cloxp before Apr 24, please stop the server and remove the LivelyKernel/node_modules (`rm -rf LivelyKernel/node_modules`), then restart the server. This will update the dependencies and fix a bug that will make the server to listen on more interfaces than just localhost.
+
 ## Installation
 
 Prerequisites are: [java](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [leiningen](http://leiningen.org/), [node.js + npm](http://nodejs.org/).
