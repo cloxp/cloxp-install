@@ -1,5 +1,6 @@
 #! /bin/bash
 
+release_tag="pre-0.0.8"
 cloxp_dir=`pwd`
 install_log="install.log"
 echo -e "cloxp install started `date`" > $install_log
@@ -34,7 +35,7 @@ res=$(npm --version 2>&1 >>"$install_log")
 
 echo -e "Installing LivelyKernel..."
 
-res=$(git clone --branch cloxp-0.0.7 \
+res=$(git clone --branch cloxp-$release_tag \
           --single-branch \
           https://github.com/cloxp/LivelyKernel \
       2>&1 >>"$install_log")
