@@ -27,9 +27,16 @@ Prerequisites are: [git](http://git-scm.com//download), [java](http://www.oracle
 3. Install: `$ install.cmd`
 4. Start: `$ start.cmd`
 
+### Docker
+
+A docker setup is available:
+[cloxp/cloxp-docker](https://github.com/cloxp/cloxp-docker). Prerequisites: [docker](https://docs.docker.com/), a docker supported VM like [virtualbox](https://www.virtualbox.org/wiki/Downloads). It should work on
+all platforms that support docker.
+
+
 #### Install notes
 
-On Arch Linux you might have to set the python path for installing when your default python isn't of version 2: `$ PYTHON=python2.7 ./install.sh`
+On Arch Linux you might have to set the python path for installing when your default python isn't of version 2: `$ PYTHON=python2.7 ./install.sh`.
 
 ## LICENSE
 
