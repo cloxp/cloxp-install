@@ -1,0 +1,15 @@
+.DS_Store
+.svn
+nbproject
+.settings.xml
+.settings
+.c9revisions
+child.log
+debug.log
+search.txt
+test/output.xml
+test/assets/*.locks
+test/credentials.js
+npm-debug.log
+node_modules/*
+test/assets/litmus*
