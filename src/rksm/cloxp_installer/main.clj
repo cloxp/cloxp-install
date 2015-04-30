@@ -20,10 +20,7 @@
 
 (defn- os-dispatch
   [{os-name :name :or {os-name ""}}]
-  #_(re-find #"Windows|Mac OS" os-name)
-  (if (= (re-find #"Windows|Mac OS" os-name) "Mac OS")
-    "Windows"
-    (re-find #"Windows|Mac OS" os-name)))
+  (re-find #"Windows|Mac OS" os-name))
 
 (def ^:dynamic *release-tag* nil)
 (def cloxp-dir (-> "." io/file .getCanonicalPath))
