@@ -3,7 +3,7 @@
   :license {:name "MIT License"
             :url "http://opensource.org/licenses/MIT"}
   :url "http://github.com/cloxp/cloxp-installer"
-  :dependencies [[org.clojure/clojure "1.6.0"]]
+  :dependencies [[org.clojure/clojure "1.7.0"]]
   :scm {:url "git@github.com:cloxp/cloxp-installer.git"}
   :pom-addition [:developers [:developer
                               [:name "Robert Krahn"]

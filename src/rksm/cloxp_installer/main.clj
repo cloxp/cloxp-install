@@ -98,11 +98,20 @@
                 (apply shell/sh (split command-string #" ")))
     (apply shell/sh (split command-string #" "))))
 
+(defn match-version
+  [version-string]
+  (if-let [[parsed major minor patch] (re-find #"([0-9]+)\.([0-9]+)\.([0-9]+)" version-string)]
+    {:major (read-string major)
+      :minor (read-string minor)
+      :patch (read-string patch)}))
+
 (defn assert-bin
-  [name command]
+  [name command & [version-check required-version]]
   (let [{:keys [exit out err]} (cmd command)]
-    (if-not (zero? exit)
-      (install-error name " does not seem to be installed"))))
+    (when-not (zero? exit)
+      (install-error name " does not seem to be installed"))
+    (when (and version-check (not (version-check out)))
+      (install-error name " does not seem to be installed in the required version " required-version))))
 
 (defn assert-command-succeeds
   ([command]
@@ -128,7 +137,7 @@
   [_]
   (println "1. Checking dependencies...")
   (assert-bin "Leiningen" "lein --version")
-  (assert-bin "node.js" "node --version")
+  (assert-bin "node.js" "node --version" (fn [v] (let [{:keys [major]} (match-version v)] (= 4 major))) "v4.x")
   (assert-bin "npm" "npm --version")
   (assert-bin "git" "git --version"))
 
