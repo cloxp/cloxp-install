@@ -5,11 +5,11 @@ Install script for [cloxp -- a Clojure IDE for explorative and interactive devel
 
 ### Mac OS and Linux
 
-Prerequisites are: [git](http://git-scm.com//download), [java](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [leiningen](http://leiningen.org/), [node.js + npm](http://nodejs.org/).
+Prerequisites are: [git](http://git-scm.com//download), [java](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [leiningen](http://leiningen.org/), [node.js version 4(!)](http://nodejs.org/).
 
 1. Download the latest release: https://github.com/cloxp/cloxp-install/releases/
 2. Open a terminal.
-2. Uncompress: `$ unzip cloxp-pre-0.0.8.zip; cd cloxp-pre-0.0.8`
+2. Uncompress: `$ unzip cloxp-0.2.0.zip; cd cloxp-0.2.0`
 3. Install: `$ ./install.sh`
 4. Start: `$ ./start.sh`
 
