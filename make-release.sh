@@ -1,6 +1,6 @@
 #! /bin/bash
 
-release="0.2.0";
+release="0.2.1";
 
 lein do clean, uberjar;
 cp target/cloxp-installer-0.1.0-standalone.jar cloxp-installer.jar;
