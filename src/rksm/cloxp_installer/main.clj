@@ -15,9 +15,6 @@
          :version (System/getProperty "os.version")
          :arch (System/getProperty "os.arch")})
 
-(def node-exe-url "http://nodejs.org/dist/latest/win-x86/node.exe")
-(def node-exe-64-url "http://nodejs.org/dist/latest/win-x64/node.exe")
-
 (defn- os-dispatch
   [{os-name :name :or {os-name ""}}]
   (re-find #"Windows|Mac OS" os-name))
@@ -176,9 +173,12 @@
 
   (println "3.1 Installing nodejs + npm...")
 
-  (case (:arch os)
-    "amd64" (download node-exe-64-url "node.exe")
-    (download node-exe-url "node.exe"))
+  (case (:arch os)    
+    "amd64" (copy-file (io/file "win" "node.x64.exe") (io/file "node.exe"))
+    (copy-file (io/file "win" "node.x86.exe") (io/file "node.exe"))
+    ;"amd64" (cmd (str "COPY /B " node-exe-64 " node.exe"))
+    ;(cmd (str "COPY /B " node-exe " node.exe"))
+    )
 
   (copy-file (io/file "win" "gnuwin32") (io/file "gnuwin32"))
   (copy-file (io/file "win" "node_modules") (io/file "node_modules"))
