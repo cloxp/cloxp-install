@@ -137,7 +137,7 @@
   [_]
   (println "1. Checking dependencies...")
   (assert-bin "Leiningen" "lein --version")
-  (assert-bin "node.js" "node --version" (fn [v] (let [{:keys [major]} (match-version v)] (= 4 major))) "v4.x")
+  (assert-bin "node.js" "node --version" (fn [v] (let [{:keys [major]} (match-version v)] (>= major 4))) "v4.x")
   (assert-bin "npm" "npm --version")
   (assert-bin "git" "git --version"))
 
