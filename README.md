@@ -5,11 +5,11 @@ Install script for [cloxp -- a Clojure IDE for explorative and interactive devel
 
 ### Mac OS and Linux
 
-Prerequisites are: [git](http://git-scm.com//download), [java](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [leiningen](http://leiningen.org/), [node.js version 4(!)](http://nodejs.org/).
+Prerequisites are: [git](http://git-scm.com/download), [java](http://www.oracle.com/technetwork/java/javase/downloads/), [leiningen](http://leiningen.org/), [node.js version >=4](http://nodejs.org/).
 
 1. Download the latest release: https://github.com/cloxp/cloxp-install/releases/
 2. Open a terminal.
-2. Uncompress: `$ unzip cloxp-0.2.0.zip; cd cloxp-0.2.0`
+2. Uncompress: `$ unzip cloxp-0.2.0.zip; cd cloxp-0.2.1`
 3. Install: `$ ./install.sh`
 4. Start: `$ ./start.sh`
 
@@ -30,8 +30,7 @@ Prerequisites are: [git](http://git-scm.com//download), [java](http://www.oracle
 ### Docker
 
 A docker setup is available:
-[cloxp/cloxp-docker](https://github.com/cloxp/cloxp-docker). Prerequisites: [docker](https://docs.docker.com/), a docker supported VM like [virtualbox](https://www.virtualbox.org/wiki/Downloads). It should work on
-all platforms that support docker.
+[cloxp/cloxp-docker](https://github.com/cloxp/cloxp-docker). Prerequisites: [docker](https://docs.docker.com/), a docker supported VM like [virtualbox](https://www.virtualbox.org/wiki/Downloads). It should work on all platforms that support docker.
 
 
 #### Install notes

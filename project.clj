@@ -1,4 +1,4 @@
-(defproject org.rksm/cloxp-installer "0.1.0"
+(defproject org.rksm/cloxp-installer "0.2.1"
   :description "Installer for cloxp."
   :license {:name "MIT License"
             :url "http://opensource.org/licenses/MIT"}
