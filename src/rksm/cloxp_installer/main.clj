@@ -15,8 +15,8 @@
          :version (System/getProperty "os.version")
          :arch (System/getProperty "os.arch")})
 
-(def node-exe-url "http://nodejs.org/dist/latest/node.exe")
-(def node-exe-64-url "http://nodejs.org/dist/latest/x64/node.exe")
+(def node-exe-url "http://nodejs.org/dist/latest/win-x86/node.exe")
+(def node-exe-64-url "http://nodejs.org/dist/latest/win-x64/node.exe")
 
 (defn- os-dispatch
   [{os-name :name :or {os-name ""}}]
@@ -47,10 +47,7 @@
 (defn download [uri file]
   "downloads a file"
   (let [file (.getCanonicalFile (io/file file))]
-    (with-open [in (io/input-stream uri)
-                out (io/output-stream file)]
-      (io/copy in out))
-    file))
+    (io/copy (io/input-stream uri) file)))
 
 (defn unzip
   "takes a path to a zip file and a target dir. Will unzip all contents of the
@@ -176,13 +173,13 @@
 (defmethod install-npm-modules "Windows"
   [_]
   (println "3. Installing npm / modules...")
-  
+
   (println "3.1 Installing nodejs + npm...")
-  
+
   (case (:arch os)
     "amd64" (download node-exe-64-url "node.exe")
     (download node-exe-url "node.exe"))
-  
+
   (copy-file (io/file "win" "gnuwin32") (io/file "gnuwin32"))
   (copy-file (io/file "win" "node_modules") (io/file "node_modules"))
   (copy-file (io/file "win" "npm.cmd") (io/file "npm.cmd")))
