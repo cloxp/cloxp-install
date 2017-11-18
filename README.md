@@ -1,5 +1,10 @@
 # cloxp-install
-Install script for [cloxp -- a Clojure IDE for explorative and interactive development](http://cloxp.github.io/).
+
+[cloxp -- a Clojure IDE for explorative and interactive development](http://cloxp.github.io/).
+
+Run the live web version without install: [cloxp.lively-next.org]()
+
+Or use this install script for setting cloxp up locally.
 
 ## Installation
 
